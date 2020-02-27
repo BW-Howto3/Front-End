@@ -6,8 +6,7 @@ const Welcome = () => {
         <div> 
             <h1>Welcome to How-To!</h1>
             <nav>
-            <Link className='welcomeLinks' to="/signin">Sign in</Link>
-            <Link className='welcomeLinks' to="/signup">Sign up</Link>
+            <Link className='welcomeLinks' to="/signin">Sign in/Register</Link>
           </nav>
         </div>
     )
