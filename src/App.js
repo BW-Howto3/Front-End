@@ -1,12 +1,12 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Welcome from './components/Welcome'
 import SignUp from './components/SignUp'
 import SignIn from './components/SignIn'
 
 function App() {
   return (
-    <Router>
+    <Router >
       <div className="App">
         <Switch>
           <Route path='/signup' component={SignUp} />
