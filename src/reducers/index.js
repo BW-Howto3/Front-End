@@ -10,7 +10,7 @@ const initialState = {
     isLoading: false,
     error: null,
     user: {},
-    array: []
+    howtos: []
 }
 
 export const reducer = (state = initialState, action) => {
