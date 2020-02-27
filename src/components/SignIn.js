@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 const SignIn  = props => {
     const[user, setUser] = useState({
@@ -11,6 +12,21 @@ const SignIn  = props => {
         setUser({...user, [e.target.name]: e.target.value})
     }
 
+    const submitLogin = e => {
+        axios.post('https://howto-be.herokuapp.com/api/auth/login', user)
+            .then((result) => {
+                console.log(result)
+                localStorage.setItem('token', result.data.token)
+                localStorage.setItem('user_id', result.data.user_id)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
+
+    const submitRegister = e => {}
+
     useEffect(() => {
         console.log(user)
     }, [user])
@@ -18,6 +34,7 @@ const SignIn  = props => {
         <>
             <form onSubmit={ e => {
                 e.preventDefault()
+                submitLogin(e)
             }}>
                 <label>Username</label>
                 <input
