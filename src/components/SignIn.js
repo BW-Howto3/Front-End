@@ -15,7 +15,7 @@ const SignIn  = props => {
     const submitLogin = e => {
         axios.post('https://howto-be.herokuapp.com/api/auth/login', user)
             .then((result) => {
-                console.log(result)
+                console.log('login', result)
                 localStorage.setItem('token', result.data.token)
                 localStorage.setItem('user_id', result.data.user_id)
             })
@@ -25,7 +25,13 @@ const SignIn  = props => {
     }
 
 
-    const submitRegister = e => {}
+    const submitRegister = e => {
+        axios.post('https://howto-be.herokuapp.com/api/auth/register', user)
+            .then(res => {
+                console.log('register' , res)
+                submitLogin()
+            })
+    }
 
     useEffect(() => {
         console.log(user)
@@ -33,8 +39,7 @@ const SignIn  = props => {
     return (
         <>
             <form onSubmit={ e => {
-                e.preventDefault()
-                submitLogin(e)
+                e.preventDefault() 
             }}>
                 <label>Username</label>
                 <input
@@ -49,10 +54,11 @@ const SignIn  = props => {
                     onChange={e => handleChange(e)}
                 ></input>
                 <button 
-                    type="submit"   
+                    type="submit"
+                    onClick={ e => submitLogin(e)} 
                 >Sign In</button>
                 <button
-                    onClick={ e => console.log("register")}
+                    onClick={ e => submitRegister(e)}
                 >Register</button>  
             </form>
         </>
