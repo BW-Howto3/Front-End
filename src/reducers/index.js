@@ -1,9 +1,7 @@
 import {
     FETCHING_START,
     FETCHING_ERROR,
-    USER,
-    LOGIN,
-    LOGOUT
+    USER
 } from '../actions'
 
 const initialState = {
