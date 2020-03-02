@@ -1,0 +1,31 @@
+.button {
+  background: hotpink;
+  border: 1px solid transparent;
+  color: white;
+  margin-right: 1em;
+  padding: 0.25em 0.75em;
+  transition: all 0.25s ease-in;
+  &:hover {
+    background: purple;
+    border: 1px solid hotpink;
+    color: #333;
+  }
+}
+.input {
+  background: hotpink;
+  border: 1px solid transparent;
+  color: white;
+  margin-right: 1em;
+  padding: 0.25em 0.75em;
+  transition: all 0.25s ease-in;
+  &:hover {
+    background: purple;
+    border: 1px solid hotpink;
+    color: #333;
+  }
+}
+
+label {
+  color: #660066;
+  font-weight: bold;
+}
