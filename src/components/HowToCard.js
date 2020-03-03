@@ -1,19 +1,20 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { connect } from "react-redux";
 
-const HowToCard = props => {
-    return (
-        <>
-        </>
-    )
-}
+const HowToCard = (props) => {
+  const { id, names, description } = props.header;
+  return (
+    <div className="HowToCard">
+      <h2>{id}</h2>
+      <div className="names">
+        Name: <em>{names}</em>
+      </div>
+      <div className="description">
+        Description: <strong>{description}</strong>
+      </div>
+      <h3>Actors</h3>
 
-const mapStateToProps = state => {
-    return {
-        isLoading: state.isLoading,
-        user: state.user,
-        error:state.error
-    }
-}
-
-export default connect(mapStateToProps, {})(HowToCard)
+      {console.log(name)}
+    </div>
+  );
+};
