@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const SignUp = props => {
+const Header = props => {
     return (
         <>
         </>
@@ -12,8 +12,8 @@ const mapStateToProps = state => {
     return {
         isLoading: state.isLoading,
         user: state.user,
-        error:state.error
+        error: state.error
     }
 }
 
-export default connect(mapStateToProps, {})(SignUp)
+export default connect(mapStateToProps, {})(Header)
