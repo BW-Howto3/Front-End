@@ -1,7 +1,7 @@
 import {
     FETCHING_START,
     FETCHING_ERROR,
-    USER
+    // USER
 } from '../actions'
 
 const initialState = {

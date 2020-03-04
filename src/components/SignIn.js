@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const SignIn  = props => {
     const[user, setUser] = useState({
@@ -37,7 +38,10 @@ const SignIn  = props => {
         console.log(user)
     }, [user])
     return (
-        <>
+        <header className="header-main">
+            <nav className="navLinks">
+                <Link className='aboutLink' to="/about">About us</Link>
+            </nav>
             <form onSubmit={ e => {
                 e.preventDefault() 
             }}>
@@ -61,7 +65,7 @@ const SignIn  = props => {
                     onClick={ e => submitRegister(e)}
                 >Register</button>  
             </form>
-        </>
+        </header>
     )
 }
 

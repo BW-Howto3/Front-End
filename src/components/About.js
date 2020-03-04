@@ -17,7 +17,11 @@ const About = () => (
             <Card className="three">
             <CardHeader>Batuhan Balta</CardHeader>
             <CardBody>Web11, React</CardBody>
+<<<<<<< Updated upstream
             <CardFooter>github.com/baltabatuhan</CardFooter>
+=======
+            <CardFooter>github.com/</CardFooter>
+>>>>>>> Stashed changes
         </Card>
         <Card className="four">
             <CardHeader>Dessa Goodlett</CardHeader>
