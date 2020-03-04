@@ -44,8 +44,9 @@ const SignIn  = props => {
     }, [user])
     return (
         <header>
-            <nav className="navLinks">
-                <Link className='aboutLink' to="/about">About us</Link>
+            <nav>
+                <Link className='link' to="/about">About us</Link>
+                <Link className='link' to="/howto">How To Do It</Link>
             </nav>
            { localStorage.getItem("token")==null ? (<form onSubmit={ e => {
                 e.preventDefault() 
