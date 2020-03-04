@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const HowToList = props => {
     useEffect(() => {
-        axios.get('https://howto-be.herokuapp.com/api/howtos')
+        axios.get('https://howto-be.herokuapp.com/api/howto')
             .then(response => console.log(response))
             .catch(error => console.log(error)) 
     },[])
