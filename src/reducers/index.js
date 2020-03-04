@@ -1,33 +1,37 @@
 import {
-    FETCHING_START,
-    FETCHING_ERROR,
-    // USER
-} from '../actions'
+
+  FETCHING_START,
+  FETCHING_SUCCESS,
+  FETCHING_ERROR,
+  CREATE_START,
+  CREATE_SUCCESS,
+  CREATE_ERROR
+} from "../actions";
 
 const initialState = {
-    isLoading: false,
-    error: null,
-    user: {},
-    howtos: []
-}
+  isLoading: false,
+  error: "",
+  user: {},
+  howtos: []
+};
 
 export const reducer = (state = initialState, action) => {
-    switch(action.type){
-        case FETCHING_START:
-            console.log("FETCHING START ACTION", action.payload)
-            return {
-                ...state,
-                isLoading: true,
-                error: null
-            }
-        case FETCHING_ERROR:
-            console.log("ERROR ACTION", action.payload)
-            return{
-                ...state,
-                error: action.payload,
-                isLoading: false
-            }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case FETCHING_START:
+      return {
+        ...state,
+        isLoading: true,
+        error: ""
+      };
+    case FETCHING_SUCCESS:
+      return { ...state, isLoading: false, howtos: action.payload };
+    case FETCHING_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false
+      };
+    default:
+      return state;
+  }
+};

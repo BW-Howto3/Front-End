@@ -14,18 +14,20 @@ const SignIn = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-    const submitLogin = e => {
-        axios.post('https://howto-be.herokuapp.com/api/auth/login', user)
-            .then((result) => {
-                console.log('login', result)
-                localStorage.setItem('token', result.data.token)
-                localStorage.setItem('user_id', result.data.user_id)
-                props.appRefresh()
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+
+  const submitLogin = () => {
+    axios
+      .post("https://howto-be.herokuapp.com/api/auth/login", user)
+      .then((result) => {
+        console.log("login", result);
+        localStorage.setItem("token", result.data.token);
+        localStorage.setItem("user_id", result.data.user_id);
+        props.history.push("/howto");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const submitRegister = (e) => {
     axios
@@ -83,6 +85,7 @@ const SignIn = (props) => {
         </header>
     )
 }
+
 
 const mapStateToProps = (state) => {
   return {
