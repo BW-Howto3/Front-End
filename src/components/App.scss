@@ -1,30 +1,94 @@
 .App {
-  background-color: #ffeaff;
-  height: 100%;
-  width: 100%;
+    background-color: #FFEAFF;
+    height: 100%;
+    width: 100%;
 }
 .main-div {
-  text-align: center;
-  height: 100%;
+    text-align: center;
+    height: 100%;
 }
 h1 {
-  font-size: 60px;
-}
-.aboutLink {
-  text-decoration: none;
-  font-size: 20px;
+    font-size: 60px;
 }
 .main-img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 .mainP {
-  font: arial;
-  text-emphasis: bold;
-  margin: 20px;
+    font: arial;
+    text-emphasis: bold;
+    margin: 20px;
 }
-.header-main {
-  display: inline-flex;
-  width: 100%;
-  justify-content: space-between;
+header {
+    display: flex;
+    flex-direction: column;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        input {
+            height: 40px;
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: right;
+            padding: 5px;
+        }
+        button {
+            background-color: white;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            &:hover{
+                background-color: #FFEAFF;
+            }
+        }
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        a {
+            width: 100%;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                background-color: #FFEAFF;
+            }
+        }
+    }
+}
+@media(min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        form {
+            input {
+                height: 20px;
+            }
+                button {
+                    width: 75px;
+                    height: 25px;
+                }
+        }
+        nav {
+            flex-direction: row;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            a {
+                height : 20px;
+                width: 120px;
+            }
+        }
+    }
 }
