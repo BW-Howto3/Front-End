@@ -3,15 +3,16 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const SignIn  = props => {
-    const[user, setUser] = useState({
-        username: '',
-        password: ''
-    })
 
-    const handleChange = e => {
-        setUser({...user, [e.target.name]: e.target.value})
-    }
+const SignIn = (props) => {
+  const [user, setUser] = useState({
+    username: "",
+    password: ""
+  });
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
 
     const submitLogin = e => {
         axios.post('https://howto-be.herokuapp.com/api/auth/login', user)
@@ -26,6 +27,14 @@ const SignIn  = props => {
             })
     }
 
+  const submitRegister = (e) => {
+    axios
+      .post("https://howto-be.herokuapp.com/api/auth/register", user)
+      .then((res) => {
+        console.log("register", res);
+        submitLogin();
+      });
+  };
 
     const submitRegister = e => {
         axios.post('https://howto-be.herokuapp.com/api/auth/register', user)
@@ -75,12 +84,12 @@ const SignIn  = props => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        isLoading: state.isLoading,
-        user: state.user,
-        error: state.error
-    }
-}
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.isLoading,
+    user: state.user,
+    error: state.error
+  };
+};
 
-export default connect(mapStateToProps, {})(SignIn)
+export default connect(mapStateToProps, {})(SignIn);
