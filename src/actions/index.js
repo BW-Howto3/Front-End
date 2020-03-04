@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import Axios from 'axios';
 export const FETCHING_START = 'FETCHING_START';
 export const FETCHING_ERROR = 'FETCHING_ERROR';
 export const USER = 'USER'

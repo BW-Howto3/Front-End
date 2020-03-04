@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react' 
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 const HowToList = props => {
-    // useEffect(() => {
-
-    // })
+    useEffect(() => {
+        axios.get('https://howto-be.herokuapp.com/api/howtos')
+            .then(response => console.log(response))
+            .catch(error => console.log(error)) 
+    },[])
     return (
         <>
         </>
@@ -20,6 +23,6 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, {fetchUserArray})(EmployerList)
+export default connect(mapStateToProps, {})(HowToList)
 
 
