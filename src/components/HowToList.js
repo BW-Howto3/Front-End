@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react' 
-import { connect } from 'react-redux'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 
 const HowToList = props => {
     useEffect(() => {
@@ -24,5 +24,3 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, {})(HowToList)
-
-
