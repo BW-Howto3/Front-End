@@ -19,6 +19,7 @@ const SignIn  = props => {
                 console.log('login', result)
                 localStorage.setItem('token', result.data.token)
                 localStorage.setItem('user_id', result.data.user_id)
+                props.appRefresh()
             })
             .catch((error) => {
                 console.log(error)
@@ -33,16 +34,20 @@ const SignIn  = props => {
                 submitLogin()
             })
     }
+    const submitLogout = e => {
+        localStorage.clear()
+        props.appRefresh()
+    }
 
     useEffect(() => {
         console.log(user)
     }, [user])
     return (
-        <header className="header-main">
+        <header>
             <nav className="navLinks">
                 <Link className='aboutLink' to="/about">About us</Link>
             </nav>
-            <form onSubmit={ e => {
+           { localStorage.getItem("token")==null ? (<form onSubmit={ e => {
                 e.preventDefault() 
             }}>
                 <label>Username</label>
@@ -64,7 +69,7 @@ const SignIn  = props => {
                 <button
                     onClick={ e => submitRegister(e)}
                 >Register</button>  
-            </form>
+            </form>) : (<button onClick={() => submitLogout()}>log out</button>) }
         </header>
     )
 }

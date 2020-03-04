@@ -23,8 +23,67 @@ h1 {
     text-emphasis: bold;
     margin: 20px;
 }
-.header-main {
-    display: inline-flex;
-    width: 100%;
-    justify-content: space-between;
+header {
+    display: flex;
+    flex-direction: column;
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        input {
+            height: 40px;
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: right;
+            padding: 5px;
+        }
+        button {
+            background-color: white;
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            &:hover{
+                background-color: #FFEAFF;
+            }
+        }
+    }
+    nav {
+        width: 100%;
+        a {
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                background-color: #FFEAFF;
+            }
+        }
+    }
+}
+@media(min-width: 768px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+        form {
+            input {
+                height: 20px;
+            }
+                button {
+                    width: 75px;
+                    height: 25px;
+                }
+        }
+    }
+    nav {
+        a {
+            height : 20px;
+            width: 100px;
+        }
+    }
 }
