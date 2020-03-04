@@ -12,13 +12,14 @@ const SignIn = (props) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const submitLogin = (e) => {
+  const submitLogin = () => {
     axios
       .post("https://howto-be.herokuapp.com/api/auth/login", user)
       .then((result) => {
         console.log("login", result);
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("user_id", result.data.user_id);
+        props.history.push("/howto");
       })
       .catch((error) => {
         console.log(error);
@@ -44,28 +45,22 @@ const SignIn = (props) => {
           e.preventDefault();
         }}
       >
-        <label>Username :</label>
+        <label>Username</label>
         <input
-          className="input"
           name="username"
           value={user.username}
           onChange={(e) => handleChange(e)}
         ></input>
-        <label>Password :</label>
+        <label>Password</label>
         <input
-          className="input"
           name="password"
           value={user.password}
           onChange={(e) => handleChange(e)}
         ></input>
-        <button
-          type="submit"
-          className="button"
-          onClick={(e) => submitLogin(e)}
-        >
+        <button type="submit" onClick={submitLogin}>
           Sign In
         </button>
-        <button className="button" onClick={(e) => submitRegister(e)}>
+        <button type="submit" onClick={submitRegister}>
           Register
         </button>
       </form>
