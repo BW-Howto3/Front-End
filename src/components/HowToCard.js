@@ -5,8 +5,8 @@ const Header = (props) => {
     console.log(props)
       return (
           <span className="howToCard">
-            <h2>Name: {props.data}</h2>
-            <p>Description: {props.data}</p>
+            <h2>Name: {props.info.name}</h2>
+            <p>Description: {props.info.description}</p>
           </span>
   )
 };

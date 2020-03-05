@@ -48,6 +48,9 @@ const SignIn = (props) => {
   return (
     <header>
       <nav>
+        <Link className="link" to="/">
+          Home
+          </Link>
         <Link className="link" to="/about">
           About us
         </Link>
