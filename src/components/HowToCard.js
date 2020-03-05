@@ -2,7 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 
 const Header = (props) => {
-  return <></>;
+    console.log(props)
+      return (
+          <span className="howToCard">
+            <h2>Name: {props.data}</h2>
+            <p>Description: {props.data}</p>
+          </span>
+  )
 };
 
 const mapStateToProps = (state) => {
