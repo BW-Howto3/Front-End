@@ -4,7 +4,7 @@ import { createHowTo } from "../actions";
 
 const CreateHowTo = (props) => {
   const [post, setPost] = useState({
-    user_id: localStorage.getItem("user_id"),
+    user_id: Number(localStorage.getItem("user_id")),
     name: "",
     description: ""
   });
@@ -20,7 +20,7 @@ const CreateHowTo = (props) => {
       [e.target.name]: e.target.value
     });
   };
-
+  console.log("POST", post);
   return (
     <div>
       <form onSubmit={create}>
