@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import HowToCard from "./HowToCard";
+import { connect } from "react-redux";
+
 import { axiosWithAuth } from "../AxiosWithAuth.js";
 import { Link } from "react-router-dom";
 
@@ -12,9 +16,13 @@ const HowToList = (props) => {
   }, [props.post]);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/howto`)
-      .then((res) => sethowTo(res.data));
+    axios
+      .get("https://howto-be.herokuapp.com/api/howto")
+      .then((response) => {
+        console.log(response);
+        sethowTo(response.data);
+      })
+      .catch((error) => console.log("failed to load", error));
   }, []);
 
   function Delete() {
@@ -43,4 +51,13 @@ const HowToList = (props) => {
   );
 };
 
-export default HowToList;
+const mapStateToProps = (state) => {
+  return {
+    isLocation: state.isLocation,
+    user: state.user,
+    error: state.error,
+    array: state.array
+  };
+};
+
+export default connect(mapStateToProps, {})(HowToList);
