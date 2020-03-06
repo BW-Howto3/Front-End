@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-import { axiosWithAuth } from "../authorization/axiosWithAuth.js";
+import { axiosWithAuth } from "../AxiosWithAuth.js";
 
 const EditHowTo = (props) => {
   console.log(props.location);
-  const [post, setPost] = useState({ name: "", description: "" });
-
+  const [post, setPost] = useState({
+    user_id: Number(localStorage.getItem("user_id")),
+    name: "",
+    description: ""
+  });
   useEffect(() => {
     setPost(props.location.updateProps);
   }, [props.location.updateProps]);
@@ -19,13 +22,10 @@ const EditHowTo = (props) => {
     );
 
     axiosWithAuth()
-      .put(
-        "https://howto-be.herokuapp.com/api/howto" + post.id,
-        JSON.stringify(post)
-      )
+      .put("/howto" + post.id, JSON.stringify(post))
       .then((res) => {
         alert("Sucessfully Updated Post");
-        props.history.push("/");
+        props.history.push("/howto");
       })
       .catch((err) => console.log(err));
   };
@@ -40,14 +40,14 @@ const EditHowTo = (props) => {
   return (
     <div>
       <form onSubmit={update}>
-        <label>Title: </label>
+        <label>Name: </label>
         <input
           type="text"
           name="name"
-          value={post.description}
+          value={post.name}
           onChange={handleChange}
         />
-        <label>Description: </label>
+        <label>: </label>
         <input
           type="text"
           name="description"
@@ -55,7 +55,7 @@ const EditHowTo = (props) => {
           onChange={handleChange}
         />
 
-        <button>Update Post</button>
+        <button>Update Friend</button>
       </form>
     </div>
   );

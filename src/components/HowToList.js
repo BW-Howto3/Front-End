@@ -1,24 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
+import { axiosWithAuth } from "../AxiosWithAuth.js";
+import { Link } from "react-router-dom";
 
 const HowToList = (props) => {
+  const [post, setPost] = useState({});
+
+  const [howTo, sethowTo] = useState([]);
+
   useEffect(() => {
-    axios
-      .get("https://howto-be.herokuapp.com/api/howto")
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+    setPost(props.post);
+  }, [props.post]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/howto`)
+      .then((res) => sethowTo(res.data));
   }, []);
-  return <></>;
+
+  function Delete() {
+    axiosWithAuth()
+      .delete(`/howto/${post.id}`)
+      .then((res) => alert("Deleted Post"))
+      .catch((err) => alert("Error Deleting Post"))
+      .finally(() => window.location.reload());
+  }
+
+  return (
+    <div>
+      {howTo.map((item) => {
+        return (
+          <div>
+            <p>{item.name}</p>
+            <p>{item.description}</p>
+            <button onClick={Delete}>Delete</button>
+            <Link to={{ pathname: "/EditHowTo", updateProps: { ...post } }}>
+              Update Post
+            </Link>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isLocation: state.isLocation,
-    user: state.user,
-    error: state.error,
-    array: state.array
-  };
-};
-
-export default connect(mapStateToProps, {})(HowToList);
+export default HowToList;

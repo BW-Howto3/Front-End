@@ -7,7 +7,8 @@ import About from "./components/About";
 import "./components/App.scss";
 import HowToList from "./components/HowToList";
 import CreateHowTo from "./components/CreateHowTo";
-
+import EditHowTo from "./components/EditHowTo";
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   const [refresh, setRefresh] = useState(true);
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/howto" component={HowToList} />
             <Route path="/about" component={About} />
             <Route path="/" component={Welcome} />
+            <PrivateRoute path="/update" component={EditHowTo} />
           </Switch>
         </div>
       </Router>
