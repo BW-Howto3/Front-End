@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
 import { axiosWithAuth } from "../AxiosWithAuth.js";
+import { connect } from "react-redux";
+import { editHowTo } from "../actions";
 
 const EditHowTo = (props) => {
   console.log(props.location);
@@ -9,25 +11,17 @@ const EditHowTo = (props) => {
     name: "",
     description: ""
   });
+
   useEffect(() => {
-    setPost(props.location.updateProps);
+    setPost(
+      props.howtos.find((post) => post.id === props.location.updateProps)
+    );
   }, [props.location.updateProps]);
 
   const update = (e) => {
     e.preventDefault();
-
-    console.log(
-      "Updating Post with ID " + post.id + " with data ",
-      JSON.stringify(post)
-    );
-
-    axiosWithAuth()
-      .put("/howto" + post.id, JSON.stringify(post))
-      .then((res) => {
-        alert("Sucessfully Updated Post");
-        props.history.push("/howto");
-      })
-      .catch((err) => console.log(err));
+    props.editHowTo({ ...post, id: props.location.updateProps });
+    props.history.push("/howto");
   };
 
   const handleChange = (e) => {
@@ -36,7 +30,7 @@ const EditHowTo = (props) => {
       [e.target.name]: e.target.value
     });
   };
-
+  console.log("EDITHOWTO", post);
   return (
     <div>
       <form onSubmit={update}>
@@ -55,10 +49,16 @@ const EditHowTo = (props) => {
           onChange={handleChange}
         />
 
-        <button>Update Friend</button>
+        <button>Update Post</button>
       </form>
     </div>
   );
 };
 
-export default EditHowTo;
+const mapStateToProps = (state) => {
+  return {
+    howtos: state.howtos
+  };
+};
+
+export default connect(mapStateToProps, { editHowTo })(EditHowTo);

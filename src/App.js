@@ -23,10 +23,10 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/create" component={CreateHowTo} />
+            <PrivateRoute path="/update" component={EditHowTo} />
             <Route path="/howto" component={HowToList} />
             <Route path="/about" component={About} />
             <Route path="/" component={Welcome} />
-            <PrivateRoute path="/update" component={EditHowTo} />
           </Switch>
         </div>
       </Router>
