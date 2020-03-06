@@ -92,3 +92,41 @@ header {
         }
     }
 }
+.cards {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid black;
+.one .two .three .four {
+    display: flex;
+    flex-direction: column;
+    }
+}
+.cards {
+    .one {
+        img {
+            height: 200px;
+            width: 160px;
+        }
+    }
+    .two {
+        img {
+            height: 200px;
+            width: 160px;
+        }
+    }
+    .three {
+        img {
+            height: 200px;
+            width: 160px;
+        }
+    }
+    .four {
+        img {
+            height: 200px;
+            width: 160px;
+        }
+    }
+}
