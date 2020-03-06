@@ -1,33 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
 import HowToCard from "./HowToCard";
+import { connect } from "react-redux";
+import { fetchHowTo, deleteHowTo } from "../actions";
 
-const HowToList = props => {
-  const [howTo, setHowTo] = useState([]);
-    useEffect(() => {
-        axios.get('https://howto-be.herokuapp.com/api/howto')
-            .then(response => {
-              console.log(response);
-              setHowTo(response.data);
-            })
-            .catch(error => console.log('failed to load', error)) 
-    },[])
-    return (
-        <section className="howToList">
-          {howTo.map(item => (<HowToCard info={item} />
-          ))}
-        </section>
-    )
-}
+import { axiosWithAuth } from "../AxiosWithAuth.js";
+import { Link } from "react-router-dom";
 
-const mapStateToProps = state => {
-    return {
-        isLocation: state.isLocation,
-        user: state.user,
-        error: state.error,
-        array: state.array
-    }
-}
+const HowToList = (props) => {
+  useEffect(() => {
+    props.fetchHowTo();
+  }, []);
 
-export default connect(mapStateToProps, {})(HowToList)
+  function Delete(id) {
+    axiosWithAuth()
+      .delete(`/howto/${id}`)
+      .then((res) => console.log(res, "res"))
+      .catch((err) => alert("Error Deleting Post"));
+  }
+
+  return (
+    <div>
+      {props.howtos.map((item) => {
+        return (
+          <div>
+            <p>{item.name}</p>
+            <p>{item.description}</p>
+            <button onClick={() => props.deleteHowTo(item.id)}>Delete</button>
+            <Link to={{ pathname: "/update", updateProps: item.id }}>
+              Update Post
+            </Link>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    howtos: state.howtos
+  };
+};
+
+export default connect(mapStateToProps, { fetchHowTo, deleteHowTo })(HowToList);

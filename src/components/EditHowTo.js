@@ -1,33 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-import { axiosWithAuth } from "../authorization/axiosWithAuth.js";
+import { axiosWithAuth } from "../AxiosWithAuth.js";
+import { connect } from "react-redux";
+import { editHowTo } from "../actions";
 
 const EditHowTo = (props) => {
   console.log(props.location);
-  const [post, setPost] = useState({ name: "", description: "" });
+  const [post, setPost] = useState({
+    user_id: Number(localStorage.getItem("user_id")),
+    name: "",
+    description: ""
+  });
 
   useEffect(() => {
-    setPost(props.location.updateProps);
+    setPost(
+      props.howtos.find((post) => post.id === props.location.updateProps)
+    );
   }, [props.location.updateProps]);
 
   const update = (e) => {
     e.preventDefault();
-
-    console.log(
-      "Updating Post with ID " + post.id + " with data ",
-      JSON.stringify(post)
-    );
-
-    axiosWithAuth()
-      .put(
-        "https://howto-be.herokuapp.com/api/howto" + post.id,
-        JSON.stringify(post)
-      )
-      .then((res) => {
-        alert("Sucessfully Updated Post");
-        props.history.push("/");
-      })
-      .catch((err) => console.log(err));
+    props.editHowTo({ ...post, id: props.location.updateProps });
+    props.history.push("/howto");
   };
 
   const handleChange = (e) => {
@@ -36,18 +30,18 @@ const EditHowTo = (props) => {
       [e.target.name]: e.target.value
     });
   };
-
+  console.log("EDITHOWTO", post);
   return (
     <div>
       <form onSubmit={update}>
-        <label>Title: </label>
+        <label>Name: </label>
         <input
           type="text"
           name="name"
-          value={post.description}
+          value={post.name}
           onChange={handleChange}
         />
-        <label>Description: </label>
+        <label>: </label>
         <input
           type="text"
           name="description"
@@ -61,4 +55,10 @@ const EditHowTo = (props) => {
   );
 };
 
-export default EditHowTo;
+const mapStateToProps = (state) => {
+  return {
+    howtos: state.howtos
+  };
+};
+
+export default connect(mapStateToProps, { editHowTo })(EditHowTo);
